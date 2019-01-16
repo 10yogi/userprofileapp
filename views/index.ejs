@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+
+    <script src= '/js/deleteUser.js'></script>
+  </head>
+  <body>
+    <h2>All user list : </h2>
+    <% if(!users||users.length <=0){%>
+    <h3>No User </h3>
+    <%}; 
+        if(users){
+          users.forEach(function(user){
+    %>
+    <img style="width:100px; height:100px" src = '<%=user.userImage %>' alt="img not found">
+    id: <%= user._id %>    name : <%= user.name %>  age : <%= user.age %> 
+    <button onclick = "deleteUser('<%= user._id %>')">Delete User</button>
+    <button onclick="update('<%= user._id %>')">update</button>
+    <br/>
+    <% })}; %>
+    <br>
+
+    <dialog id = 'dialog1'>
+        name: <input type = "text" id = "name1" >
+        age: <input type = "number" id = "age1">
+        <br/>
+       <button onclick = "updateUser()"> Update User</button>
+    </dialog>
+
+    <script src = "/js/updateUser.js"></script> 
+    <form action = "users" method = "POST" enctype="multipart/form-data" id="addUserForm">
+      name : <input type = "text" id="name" name = "name">
+      age : <input type = "number" id = "age" name = "age">
+      img : <input type = "file" id = "userImage" name = "userImage">
+      <input type = "submit" value = "add user" >
+    </form>
+    <script src = "/js/addUser.js"></script>
+    </body>
+</html>
