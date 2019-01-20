@@ -6,7 +6,7 @@ const upload = require('../config/multerConfig');
 const userController = require('../controllers/users/');
 
 
-router.get('/',userController.getUsers);
+//router.get('/',userController.gotoHome);
 
 router.post('/',upload.single('userImage'),userController.addUser);
 

@@ -2,8 +2,19 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/users/');
 
-router.get('/',userController.getUsers);
-router.use('/users',require('./users'));
+const authCheck = (req,res,next)=>{
+   console.log(req.user);
+   if(!req.user){
+      res.redirect('/auth/login');
+   }else{
+      next();
+   }
+};
+
+
+router.get('/',authCheck,userController.gotoHome);
+router.use('/auth',require('./auth'));
+router.use('/users',authCheck,require('./users'));
 
 router.all('*',(req,res)=>{
    res.status(404).send({msg:'not found'});

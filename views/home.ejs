@@ -6,6 +6,9 @@
     <script src= '/js/deleteUser.js'></script>
   </head>
   <body>
+    <img src = '<%= userimage%>'style="width:75px; height:75px"/></br> 
+    <h3>logged in as : <%= username%></h1> 
+    <a href = "/auth/logout"><button>logout</button></a><br/>
     <h2>All user list : </h2>
     <% if(!users||users.length <=0){%>
     <h3>No User </h3>
@@ -13,7 +16,7 @@
         if(users){
           users.forEach(function(user){
     %>
-    <img style="width:100px; height:100px" src = '<%=user.userImage %>' alt="img not found">
+    <a href = '<%= "/users/"+user.id %>'><img style="width:100px; height:100px" src = '<%=user.userImage %>' alt="img not found"></a>
     id: <%= user._id %>    name : <%= user.name %>  age : <%= user.age %> 
     <button onclick = "deleteUser('<%= user._id %>')">Delete User</button>
     <button onclick="update('<%= user._id %>')">update</button>
