@@ -1,10 +1,10 @@
 
 const User = require('../../models/users');
 
-var getUsers  = (req,res)=>{
+var gotoHome  = (req,res)=>{
   User.find().exec()
   .then(docs =>{
-    res.status(200).render('index',{title:"home",users:docs});
+    res.status(200).render('home',{title:"home",users:docs,username: req.user.username,userimage:req.user.thumbnail});
   })
   .catch(err=>{
     console.log(err);
@@ -12,4 +12,4 @@ var getUsers  = (req,res)=>{
   })
 };
 
-module.exports = getUsers;
+module.exports = gotoHome;

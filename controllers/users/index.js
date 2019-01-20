@@ -1,5 +1,5 @@
 const getUser = require('./getUser');
-const getUsers = require('./getUsers');
+const gotoHome = require('./gotoHome');
 const updateUser = require('./updateUser');
 const deleteUser = require('./deleteUser');
 const addUser = require('./addUser');
@@ -7,7 +7,7 @@ const addUser = require('./addUser');
 module.exports = {
   addUser : addUser,
   getUser : getUser,
-  getUsers :getUsers,
+  gotoHome :gotoHome,
   updateUser : updateUser,
   deleteUser : deleteUser
 };
