@@ -5,7 +5,7 @@ const userController = require('../controllers/users/');
 const authCheck = (req,res,next)=>{
    console.log(req.user);
    if(!req.user){
-      res.redirect('/auth/login');
+      res.render('login');
    }else{
       next();
    }
