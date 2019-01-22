@@ -14,6 +14,13 @@ const authCheck = (req,res,next)=>{
 
 router.get('/',authCheck,userController.gotoHome);
 router.use('/oauth',require('./oauth'));
+//auth logout
+router.get('/logout',(req,res)=>{
+   //handle with passport
+   req.logOut();
+   res.redirect('/');
+ })
+ 
 router.use('/users',authCheck,require('./users'));
 
 router.all('*',(req,res)=>{
