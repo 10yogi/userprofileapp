@@ -1,13 +1,13 @@
 // add file to gitignore
 module.exports={
   google : {
-    clientID : "174560230690-n6c1h7e1rbt630f73ugbisle8jute3eq.apps.googleusercontent.com",
-    clientSecret:"NwQDyl35m-h6uhiii5JzBsvJ"
+    clientID : "174560230690-b31hcb9235btrgl5s1rfo3ql1s50k9lq.apps.googleusercontent.com",
+    clientSecret:"xTkiJTuxbc01uw3cnAQ5dXfP"
   },
   mongodb : {
-    dbURI : "mongodb://localhost:27017/userdata"
+    dbURI : "mongodb://localhost:27017/userprofileapp"
   },
   session : {
-    cookieKey : 'thenetninjaisawesomeiguess'
+    cookieKey : 'lskfalkfjdlkfalfkajf'
   }
 }

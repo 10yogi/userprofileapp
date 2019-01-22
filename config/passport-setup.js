@@ -19,12 +19,12 @@ passport.deserializeUser((id,done)=>{
 passport.use(
   new GoogleStrategy(
     {
-      callbackURL : '/auth/google/redirect',
+      callbackURL : '/oauth/google/redirect',
       clientID:keys.google.clientID,
       clientSecret:keys.google.clientSecret
     },
     (acessToken,refreshToken,profile,done) => {
-      console.log(profile);
+     // console.log(profile);
       //check is user already exist in database
       loginModel.findOne({googleId:profile.id}).then((user)=>{
         if(user){
@@ -39,7 +39,7 @@ passport.use(
             thumbnail:profile._json.image.url
           }).save().then(newuser=>{
             console.log(`new google login created : ${newuser}`);
-            done(null,user);
+            done(null,newuser);
           });  
         }
       });

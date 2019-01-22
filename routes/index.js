@@ -13,7 +13,7 @@ const authCheck = (req,res,next)=>{
 
 
 router.get('/',authCheck,userController.gotoHome);
-router.use('/auth',require('./auth'));
+router.use('/oauth',require('./oauth'));
 router.use('/users',authCheck,require('./users'));
 
 router.all('*',(req,res)=>{
