@@ -6,20 +6,20 @@
     <script src= '/js/deleteUser.js'></script>
   </head>
   <body>
-    <img src = '<%= userimage%>'style="width:75px; height:75px"/></br> 
-    <h3>logged in as : <%= username%></h1> 
+    <img src = '<%= user.google.thumbnail%>'style="width:75px; height:75px"/></br> 
+    <h3>logged in as : <%= user.local.username||user.google.username%></h1> 
     <a href = "/logout"><button>logout</button></a><br/>
-    <h2>All user list : </h2>
-    <% if(!users||users.length <=0){%>
+    <h2>All list : </h2>
+    <% if(!data||data.length <=0){%>
     <h3>No User </h3>
     <%}; 
-        if(users){
-          users.forEach(function(user){
+        if(data){
+          data.forEach(function(ele){
     %>
-    <a href = '<%= "/users/"+user.id %>'><img style="width:100px; height:100px" src = '<%=user.userImage %>' alt="img not found"></a>
-    id: <%= user._id %>    name : <%= user.name %>  age : <%= user.age %> 
-    <button onclick = "deleteUser('<%= user._id %>')">Delete User</button>
-    <button onclick="update('<%= user._id %>')">update</button>
+    <a href = '<%= "/users/"+ele.id %>'><img style="width:100px; height:100px" src = '<%=ele.userImage %>' alt="img not found"></a>
+    id: <%= ele._id %>    name : <%= ele.name %>  age : <%= ele.age %> 
+    <button onclick = "deleteUser('<%= ele._id %>')">Delete User</button>
+    <button onclick="update('<%= ele._id %>')">update</button>
     <br/>
     <% })}; %>
     <br>
