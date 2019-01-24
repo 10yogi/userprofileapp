@@ -10,6 +10,13 @@ function isLoggedIn (req,res,next){
    res.redirect('/');
 };
 
+function nocache(req,res,next){
+   res.header('Cache-Control','private, no-cache, no-store , must-revalidate');
+   res.header('Expires','-1');
+   res.header('Pragma','no-cache');
+   next();
+}
+
 router.get('/',(req,res)=>{
    if(req.isAuthenticated()){
      return res.redirect('/profile');
@@ -20,6 +27,7 @@ router.get('/',(req,res)=>{
 router.get('/login',(req,res)=>{
    res.render('login',{message : req.flash('loginMessage')});
 });
+
 router.post('/login',passport.authenticate('local-login',{
    successRedirect:'/profile',
    failureRedirect: '/login',
@@ -36,7 +44,7 @@ router.post('/signup',passport.authenticate('local-signup',{
  }));
  
 
-router.get('/profile',isLoggedIn,userController.gotoProfile);
+router.get('/profile',isLoggedIn,nocache,userController.gotoProfile);
 
 router.use('/oauth',require('./oauth'));
 

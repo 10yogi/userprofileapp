@@ -2,7 +2,9 @@ const User = require('../../models/users');
 const mongoose = require('mongoose');
 
 var addUser = (req,res)=>{
+  console.log(req.user._id);
   const user = new User({
+    ownerId : req.user._id,
     name: req.body.name,
     age : req.body.age,
     userImage : req.file? req.file.path:null

@@ -10,43 +10,44 @@ var flash = require('connect-flash');
 var  app = express();
 
 var cookieSession = require('cookie-session');
-var  passport = require('./config/passport-setup');
-
-const routes = require('./routes');
-const cookieParser = require('cookie-parser');
 var session = require('express-session');
+
+const cookieParser = require('cookie-parser');
 
 mongoose.connect(keys.mongodb.dbURI,{
   useNewUrlParser : true
 });
+
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
-app.use(flash());
-
 app.use('/public',express.static(path.join(__dirname,'./public')));
 app.use(express.static(path.join(__dirname,'./public')));
 
+app.use(flash());
+app.use(morgan('dev'));
+app.use(cookieParser(keys.cookiesession.cookieKey));
+app.use(bodyParser.urlencoded({extended : false}));
+app.use(bodyParser.json());
+
+
 app.use(cookieSession({
     maxAge: 24*60*60*1000,
-    keys: [keys.session.cookieKey]
+    keys: [keys.cookiesession.cookieKey]
   })
 );
 
 //required for passport
 app.use(session({
-  secret : 'afdldkfalkfdk',
+  secret : keys.session.secret,
   saveUninitialized : false,
   resave : false
 }))
 
+var  passport = require('./config/passport-setup');
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(morgan('dev'));
-app.use(cookieParser(keys.session.cookieKey));
-
-app.use(bodyParser.urlencoded({extended : false}));
-app.use(bodyParser.json());
+const routes = require('./routes');
 app.use(routes);
 
 app.listen(port,()=>{

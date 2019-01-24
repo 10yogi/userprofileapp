@@ -7,7 +7,10 @@ module.exports={
   mongodb : {
     dbURI : "mongodb://localhost:27017/userprofileapp"
   },
-  session : {
+  cookiesession : {
     cookieKey : 'lskfalkfjdlkfalfkajf'
+  },
+  session:{
+    secret : 'akfafakfksfjkajssf'
   }
 }
